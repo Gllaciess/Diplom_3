@@ -1,0 +1,53 @@
+import allure
+import pytest
+from selenium.webdriver.support import expected_conditions as EC
+from pages.main_page import MainPage
+from constants import Urls
+
+
+@allure.feature("Конструктор")
+class TestConstructor:
+
+    @allure.title("Переход на 'Конструктор'")
+    def test_constructor_page(self, driver):
+        main_page = MainPage(driver)
+        driver.get(Urls.BASE_URL)
+        main_page.click_constructor()
+        assert driver.current_url == Urls.BASE_URL
+
+    @allure.title("Переход на 'Ленту заказов'")
+    def test_order_feed_page(self, driver):
+        main_page = MainPage(driver)
+        driver.get(Urls.BASE_URL)
+        main_page.click_order_feed()
+        assert "/feed" in driver.current_url
+
+    @allure.title("Открытие окна ингредиента")
+    def test_ingredient_modal(self, driver):
+        main_page = MainPage(driver)
+        driver.get(Urls.BASE_URL)
+        main_page.click_bun_ingredient()
+        assert main_page.wait.until(EC.visibility_of_element_located(main_page.locators.MODAL_WINDOW))
+
+    @allure.title("Закрытие окна крестиком")
+    def test_close_modal(self, driver):
+        main_page = MainPage(driver)
+        driver.get(Urls.BASE_URL)
+        main_page.click_bun_ingredient()
+        main_page.close_modal()
+        assert main_page.wait.until(EC.invisibility_of_element_located(main_page.locators.MODAL_WINDOW))
+
+    @allure.title("Счётчик ингредиента увеличивается при добавлении")
+    def test_counter_increases(self, driver):
+        main_page = MainPage(driver)
+        driver.get(Urls.BASE_URL)
+
+        initial_counter = main_page.get_counter_value()
+
+        main_page.drag_bun_to_constructor()
+
+        counter = main_page.get_counter_value()
+
+        assert int(counter) > int(initial_counter)
+
+
