@@ -72,10 +72,6 @@ class BasePage:
         except:
             return False
 
-    @allure.step("Найти элемент по XPATH и вернуть его")
-    def find_element_by_xpath(self, xpath):
-        return self.driver.find_element(By.XPATH, xpath)
-
     @allure.step("Отправить текст в поле")
     def send_keys(self, locator, text, timeout=10):
         element = self.find_element(locator, timeout)
