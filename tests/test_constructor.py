@@ -44,7 +44,6 @@ class TestConstructor:
         initial_counter = main_page.get_counter_value()
         main_page.drag_bun_to_constructor()
         counter = main_page.get_counter_value()
-
         assert int(counter) > int(initial_counter)
 
 
