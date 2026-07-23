@@ -9,9 +9,9 @@ from helpers.helpers import create_order_via_api, create_additional_order_via_ap
 class TestOrderFeed:
 
     @allure.title("Счётчик 'Выполнено за всё время' увеличивается")
-    def test_counter_all_time_increases(self, driver):
-        main_page = MainPage(driver)
-        order_feed_page = OrderFeedPage(driver)
+    def test_counter_all_time_increases(self, auth_driver):
+        main_page = MainPage(auth_driver)
+        order_feed_page = OrderFeedPage(auth_driver)
 
         token, order_number = create_order_via_api()
 
@@ -26,9 +26,9 @@ class TestOrderFeed:
         assert new_counter > initial_counter
 
     @allure.title("Счётчик 'Выполнено за сегодня' увеличивается")
-    def test_counter_today_increases(self, driver):
-        main_page = MainPage(driver)
-        order_feed_page = OrderFeedPage(driver)
+    def test_counter_today_increases(self, auth_driver):
+        main_page = MainPage(auth_driver)
+        order_feed_page = OrderFeedPage(auth_driver)
 
         token, order_number = create_order_via_api()
 
@@ -43,9 +43,9 @@ class TestOrderFeed:
         assert new_counter > initial_counter
 
     @allure.title("После оформления заказа его номер появляется в 'В работе'")
-    def test_order_number_in_progress(self, driver):
-        main_page = MainPage(driver)
-        order_feed_page = OrderFeedPage(driver)
+    def test_order_number_in_progress(self, auth_driver):
+        main_page = MainPage(auth_driver)
+        order_feed_page = OrderFeedPage(auth_driver)
 
         token, order_number = create_order_via_api()
 
