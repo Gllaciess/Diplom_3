@@ -29,7 +29,7 @@ class TestOrderFeed:
             headers={'Authorization': token}
         )
 
-        driver.refresh()
+        main_page.refresh_page()
         new_counter = order_feed_page.get_counter_all_time()
         assert new_counter > initial_counter
 
@@ -53,7 +53,7 @@ class TestOrderFeed:
             headers={'Authorization': token}
         )
 
-        driver.refresh()
+        main_page.refresh_page()
         new_counter = order_feed_page.get_counter_today()
         assert new_counter > initial_counter
 

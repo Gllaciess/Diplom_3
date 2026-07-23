@@ -1,11 +1,12 @@
 import pytest
 import requests
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from selenium.webdriver.common.by import By  # ← ваш импорт (правильный)
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from helpers.helpers import generate_random_user
 from constants import Urls
+from pages.locators import LoginPageLocators
 
 
 @pytest.fixture(params=["chrome", "firefox"])
@@ -31,9 +32,9 @@ def driver(request):
     # Авторизуемся в браузере
     driver.get(Urls.LOGIN_PAGE)
 
-    driver.find_element(By.XPATH, "//input[@name='name']").send_keys(user_data["email"])
-    driver.find_element(By.XPATH, "//input[@name='Пароль']").send_keys(user_data["password"])
-    driver.find_element(By.XPATH, "//button[text()='Войти']").click()
+    driver.find_element(*LoginPageLocators.EMAIL_INPUT).send_keys(user_data["email"])
+    driver.find_element(*LoginPageLocators.PASSWORD_INPUT).send_keys(user_data["password"])
+    driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
 
     yield driver
     driver.quit()

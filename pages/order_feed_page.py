@@ -1,5 +1,4 @@
 import allure
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from pages.base_page import BasePage
 from pages.locators import OrderFeedPageLocators
@@ -26,13 +25,12 @@ class OrderFeedPage(BasePage):
 
     @allure.step("Найти номер заказа в ленте")
     def get_order_number_in_feed(self, order_number):
-        locator = (By.XPATH, f"//a[contains(@href, '/feed/{order_number}')]")
-        return len(self.find_elements(locator)) > 0  # ← исправлено
-    
+        locator = self.locators.get_order_feed_item(order_number)
+        return len(self.find_elements(locator)) > 0
+
     @allure.step("Получить номер заказа в работе")
     def get_order_number_in_progress(self):
-        locator = (By.XPATH, "//li[contains(@class, 'text_type_digits-default')]")
-        return self.get_text(locator)
+        return self.get_text(self.locators.ORDER_IN_PROGRESS)
     
 
     
