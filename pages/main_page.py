@@ -56,12 +56,10 @@ class MainPage(BasePage):
 
     @allure.step("Проверить, что модальное окно видимо")
     def is_modal_visible(self):
-        "Проверяет, что модальное окно ингредиента отображается"
         return self.is_element_visible(self.locators.MODAL_WINDOW) is not None
 
     @allure.step("Проверить, что модальное окно закрыто")
     def is_modal_closed(self):
-        "Проверяет, что модальное окно ингредиента закрыто"
         return self.is_element_invisible(self.locators.MODAL_WINDOW)
 
 

@@ -85,7 +85,6 @@ class BasePage:
 
     @allure.step("Открыть страницу по URL")
     def open_page(self, url):
-        "Открывает указанный URL в браузере"
         self.driver.get(url)
         return self
 
