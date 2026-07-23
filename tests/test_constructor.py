@@ -26,7 +26,7 @@ class TestConstructor:
         main_page = MainPage(driver)
         main_page.open_page(Urls.BASE_URL)
         main_page.click_bun_ingredient()
-        assert main_page.is_element_visible(main_page.locators.MODAL_WINDOW) is not None
+        assert main_page.is_modal_visible()
 
     @allure.title("Закрытие окна крестиком")
     def test_close_modal(self, driver):
@@ -34,7 +34,7 @@ class TestConstructor:
         main_page.open_page(Urls.BASE_URL)
         main_page.click_bun_ingredient()
         main_page.close_modal()
-        assert main_page.is_element_invisible(main_page.locators.MODAL_WINDOW)
+        assert main_page.is_modal_closed()
 
     @allure.title("Счётчик ингредиента увеличивается при добавлении")
     def test_counter_increases(self, driver):
