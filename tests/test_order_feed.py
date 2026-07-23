@@ -16,7 +16,7 @@ class TestOrderFeed:
 
         token, order_number = create_order_via_api()
 
-        driver.get(Urls.BASE_URL)
+        main_page.open_page(Urls.BASE_URL)
         main_page.click_order_feed()
         initial_counter = order_feed_page.get_counter_all_time()
 
@@ -40,7 +40,7 @@ class TestOrderFeed:
 
         token, order_number = create_order_via_api()
 
-        driver.get(Urls.BASE_URL)
+        main_page.open_page(Urls.BASE_URL)
         main_page.click_order_feed()
         initial_counter = order_feed_page.get_counter_today()
 
@@ -64,7 +64,7 @@ class TestOrderFeed:
 
         token, order_number = create_order_via_api()
 
-        driver.get(Urls.BASE_URL)
+        main_page.open_page(Urls.BASE_URL)
         main_page.click_order_feed()
 
         order_in_progress = order_feed_page.get_order_number_in_progress()

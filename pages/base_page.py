@@ -86,5 +86,11 @@ class BasePage:
     def click_element_js(self, locator, timeout=10):
         element = self.find_element(locator, timeout)
         self.driver.execute_script("arguments[0].click();", element)
-    
+
+    @allure.step("Открыть страницу по URL")
+    def open_page(self, url):
+        "Открывает указанный URL в браузере"
+        self.driver.get(url)
+        return self
+
 

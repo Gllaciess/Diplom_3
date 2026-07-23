@@ -1,7 +1,7 @@
 import pytest
 import requests
 from selenium import webdriver
-from selenium.webdriver.common.by import By  # ← ваш импорт (правильный)
+from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from helpers.helpers import generate_random_user
